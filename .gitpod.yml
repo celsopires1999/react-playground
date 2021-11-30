@@ -2,7 +2,7 @@ tasks:
   - init: |
       docker-compose pull
   - command: |
-      docker-compose up
+      docker-compose up -d --build --force-recreate --no-deps
 ports:
   - port: 3000
     onOpen: open-browser
