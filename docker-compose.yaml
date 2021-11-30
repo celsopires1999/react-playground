@@ -3,7 +3,6 @@ services:
   app:
     container_name: my-node-app
     image: "node:14.18.1-bullseye"
-    user: "node"
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app

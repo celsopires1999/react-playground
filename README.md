@@ -1,9 +1,15 @@
+```
 docker-compose up -d --build --force-recreate --no-deps
 
 docker-compose exec app bash
 
-npx create-react-app frontend --template typescript
+if react is not installed
+    npx create-react-app frontend --template typescript 
+else
+    npm install
+end-if
 
-cd frontend
+cd frontend 
 
 npm start
+```
