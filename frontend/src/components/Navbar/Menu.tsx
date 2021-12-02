@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { 
     Button, 
     IconButton, 
@@ -8,8 +9,11 @@ import {
     Theme, 
     Typography 
 } from '@material-ui/core';
+
 import logo from '../../static/img/logo.png'
 import MenuIcon from '@material-ui/icons/Menu';
+import routes, { MyRouteProps } from '../../routes';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
     toolbar: {
@@ -30,6 +34,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
 }));
 
+const listRoutes = [
+    'dashboard',
+    'categories.list'
+];
+
+const menuRoutes = routes.filter(route => listRoutes.includes(route.name));
 
 export const Menu: React.FC = () => {
     const classes = useStyles();
@@ -64,9 +74,19 @@ export const Menu: React.FC = () => {
                 transformOrigin={{vertical:'top', horizontal: 'center'}}
                 getContentAnchorEl={null}
                 >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                {
+                    listRoutes.map(
+                        (routeName, key) => {
+                            const route = menuRoutes.find(route => route.name === routeName) as MyRouteProps;
+                            return(
+                                <MenuItem 
+                                    key={key}
+                                    
+                                    onClick={handleClose}>{route.label}</MenuItem>
+                            )  
+                        }
+                    )
+                }
             </MenuLocal>
             <Typography className={classes.title}> 
                 <img src={ logo } alt="CodeFlix" className={classes.logo} />
