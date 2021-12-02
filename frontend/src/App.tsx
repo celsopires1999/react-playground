@@ -1,12 +1,15 @@
+import { Box } from '@material-ui/core';
 import React from 'react';
 import { Navbar } from './components/Navbar';
-import { Page } from './components/Page';
+import AppRouter from './routes/AppRouter';
 
 const App: React.FC = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <Page />
+      <Box paddingTop={'70px'} >
+        <AppRouter />
+      </Box>
     </React.Fragment>
   );
 }

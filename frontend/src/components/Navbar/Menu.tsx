@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { AppBar, Button, IconButton, makeStyles, Menu as MenuLocal, MenuItem, Theme, Toolbar, Typography } from '@material-ui/core';
+import { 
+    Button, 
+    IconButton, 
+    makeStyles, 
+    Menu as MenuLocal, 
+    MenuItem, 
+    Theme, 
+    Typography 
+} from '@material-ui/core';
 import logo from '../../static/img/logo.png'
 import MenuIcon from '@material-ui/icons/Menu';
 

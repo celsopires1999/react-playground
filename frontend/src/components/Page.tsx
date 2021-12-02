@@ -1,12 +1,24 @@
-import { Container } from '@material-ui/core';
+import { Container, makeStyles, Typography } from '@material-ui/core';
 import * as React from 'react';
 
-export const Page: React.FC = () => {
+const useStyles = makeStyles({
+    title: {
+        color: '#999999'
+    }
+});
+
+type PageProps = {
+    title: string
+};
+
+export const Page: React.FC<PageProps> = (props) => {
+    const classes = useStyles();
     return (
-        <React.Fragment>
-            <Container>
-                Hello
-            </Container>    
-        </React.Fragment>
+        <Container>
+            <Typography className={classes.title}>
+                {props.title}
+            </Typography>
+            {props.children}
+        </Container>    
     );
 };
