@@ -81,8 +81,12 @@ export const Menu: React.FC = () => {
                             return(
                                 <MenuItem 
                                     key={key}
-                                    
-                                    onClick={handleClose}>{route.label}</MenuItem>
+                                    component={Link}
+                                    to={route.path as string}
+                                    onClick={handleClose}
+                                >
+                                    {route.label}
+                                </MenuItem>
                             )  
                         }
                     )
