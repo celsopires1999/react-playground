@@ -1,10 +1,14 @@
-import { Chip, TextField } from '@material-ui/core';
 import MUIDataTable, { MUIDataTableColumn } from 'mui-datatables';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import categoryHttp from '../../util/http/category-http';
+import castMemberHttp from '../../util/http/cast-member-http'
 import format from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
+
+const CastMemberMap = {
+    1: 'Diretor',
+    2: 'Ator',
+};
 
 const columnsDefinition: MUIDataTableColumn[] = [
     {
@@ -12,13 +16,11 @@ const columnsDefinition: MUIDataTableColumn[] = [
         label: 'Nome',
     },
     {
-        name: 'is_active',
-        label: 'Ativo?',
+        name: 'type',
+        label: 'Tipo',
         options: {
-            customBodyRender(value, tableMeta, updateValue) {
-                return value
-                    ? <Chip label={'Sim'} color='primary'/> 
-                    : <Chip label={'Não'} color='secondary'/>
+            customBodyRender: (value, tableMeta, updateValue) => {
+                return CastMemberMap[value];
             }
         }
     },
@@ -36,29 +38,23 @@ const columnsDefinition: MUIDataTableColumn[] = [
 type Props = {
     
 };
-
-interface Category {
-    id: string;
-    name: string;
-};
-
 const Table = (props: Props) => {
 
-    const [data, setData] = useState<Category[]>([]);
+    const [data, setData] = useState([]);
 
     useEffect( () => {
-        categoryHttp
-            .list<{data: Category[]}>()
-            .then(({data}) => setData(data.data));
-        }, [] 
+        castMemberHttp
+            .list()
+            .then(({ data }) => setData(data.data))
+        }, []
     );
 
     return (
         <React.Fragment>
         <MUIDataTable 
-            title='Listagem de Categorias'
+            title='Listar Membros de Elenco'
             columns={ columnsDefinition }  
-            data={ data }
+            data={ data }   
         />
         </React.Fragment>
     );  

@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const listRoutes = [
     'dashboard',
-    'categories.list'
+    'categories.list',
+    'members.list',
+    'genres.list',
 ];
 
 const menuRoutes = routes.filter(route => listRoutes.includes(route.name));

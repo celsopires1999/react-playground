@@ -1,8 +1,8 @@
-import { Chip, TextField } from '@material-ui/core';
+import { Chip } from '@material-ui/core';
 import MUIDataTable, { MUIDataTableColumn } from 'mui-datatables';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import categoryHttp from '../../util/http/category-http';
+import genreHttp from '../../util/http/genre-http'
 import format from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
 
@@ -10,6 +10,15 @@ const columnsDefinition: MUIDataTableColumn[] = [
     {
         name: 'name',
         label: 'Nome',
+    },
+    {
+        name: 'categories',
+        label: 'Categorias',
+        options: {
+            customBodyRender(value, tableMeta, updateValue) {
+                return value.map(value => value.name).join(', ');
+            }
+        }
     },
     {
         name: 'is_active',
@@ -36,27 +45,22 @@ const columnsDefinition: MUIDataTableColumn[] = [
 type Props = {
     
 };
-
-interface Category {
-    id: string;
-    name: string;
-};
-
 const Table = (props: Props) => {
 
-    const [data, setData] = useState<Category[]>([]);
-
-    useEffect( () => {
-        categoryHttp
-            .list<{data: Category[]}>()
-            .then(({data}) => setData(data.data));
-        }, [] 
+    const [data, setData] = useState([]);
+    useEffect(
+            () => {
+                genreHttp
+                    .list()
+                    .then(
+                        ({data}) => setData(data.data)
+                )},[]
     );
 
     return (
         <React.Fragment>
         <MUIDataTable 
-            title='Listagem de Categorias'
+            title='Listagem de Gêneros'
             columns={ columnsDefinition }  
             data={ data }
         />
