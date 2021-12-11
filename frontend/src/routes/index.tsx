@@ -3,7 +3,9 @@ import Dashboard from '../pages/Dashboard';
 import CategoryList from '../pages/category/PageList';
 import CategoryCreate from '../pages/category/PageForm';
 import MemberList from '../pages/member/PageList';
+import MemberCreate from '../pages/member/PageForm';
 import GenreList from '../pages/genre/PageList';
+import GenreCreate from '../pages/genre/PageForm';
 import Playground from '../pages/Playground';
 
 export interface MyRouteProps extends RouteProps {
@@ -41,10 +43,24 @@ const routes: MyRouteProps[] = [
         exact: true
     },
     {
+        name: 'members.create',
+        label: 'Criar Membro de Elenco',
+        path: '/members/create',
+        component: MemberCreate,
+        exact: true
+    },
+    {
         name: 'genres.list',
         label: 'Listar Gêneros',
         path: '/genres',
         component: GenreList,
+        exact: true
+    },
+    {
+        name: 'genres.create',
+        label: 'Criar Gênero',
+        path: '/genres/create',
+        component: GenreCreate,
         exact: true
     },
     {
