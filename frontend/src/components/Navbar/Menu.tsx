@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
 }));
 
-const listRoutes = [
-    'dashboard',
-    'categories.list',
-    'members.list',
-    'genres.list',
-];
+const listRoutes = {
+    'dashboard': 'Dashboard',
+    'categories.list': 'Categories',
+    'members.list': 'Membros de elenco',
+    'genres.list': 'Gêneros',
+};
 
-const menuRoutes = routes.filter(route => listRoutes.includes(route.name));
+const menuRoutes = routes.filter(route => Object.keys(listRoutes).includes(route.name));
 
 export const Menu: React.FC = () => {
     const classes = useStyles();
@@ -77,7 +77,7 @@ export const Menu: React.FC = () => {
                 getContentAnchorEl={null}
                 >
                 {
-                    listRoutes.map(
+                    Object.keys(listRoutes).map(
                         (routeName, key) => {
                             const route = menuRoutes.find(route => route.name === routeName) as MyRouteProps;
                             return(
@@ -87,7 +87,7 @@ export const Menu: React.FC = () => {
                                     to={route.path as string}
                                     onClick={handleClose}
                                 >
-                                    {route.label}
+                                    {listRoutes[routeName]}
                                 </MenuItem>
                             )  
                         }

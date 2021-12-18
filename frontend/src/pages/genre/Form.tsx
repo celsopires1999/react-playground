@@ -19,9 +19,10 @@ const Form = () => {
     const classes = useStyles();
 
     const buttonProps: ButtonProps = {
-        variant: 'outlined',
-        className: classes.submit
-    }
+        variant: 'contained',
+        color: 'secondary', 
+        className: classes.submit,
+    };
 
     const { register, handleSubmit, getValues, watch, setValue } = useForm<any>({ 
         defaultValues: { 
@@ -102,6 +103,7 @@ const Form = () => {
             </TextField>
             <Checkbox 
                 name='is_active'
+                color='primary'
                 defaultChecked
                 inputRef={ register }
             />

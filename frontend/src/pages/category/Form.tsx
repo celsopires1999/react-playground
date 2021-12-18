@@ -17,7 +17,8 @@ export const Form = () => {
     const classes = useStyles();
 
     const buttonProps: ButtonProps = {
-        variant: 'outlined',
+        variant: 'contained',
+        color: 'secondary', 
         className: classes.submit,
     };
 
@@ -55,7 +56,8 @@ export const Form = () => {
                 margin='normal'
             />
             <Checkbox 
-                name='is_active'    
+                name='is_active'  
+                color='primary'
                 defaultChecked
                 inputRef={ register }
             />

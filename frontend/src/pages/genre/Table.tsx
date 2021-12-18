@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import genreHttp from '../../util/http/genre-http'
 import format from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
+import { BadgeNo, BadgeYes } from '../../components/Badge';
 
 const columnsDefinition: MUIDataTableColumn[] = [
     {
@@ -26,8 +27,8 @@ const columnsDefinition: MUIDataTableColumn[] = [
         options: {
             customBodyRender(value, tableMeta, updateValue) {
                 return value
-                    ? <Chip label={'Sim'} color='primary'/> 
-                    : <Chip label={'Não'} color='secondary'/>
+                    ? <BadgeYes /> 
+                    : <BadgeNo />
             }
         }
     },
