@@ -9,4 +9,6 @@ services:
     ports:
       - 3002:3002
     command: ["tail", "-f", "/dev/null"] 
+    extra_hosts:
+      - "host.docker.internal: 172.17.0.1"
      
